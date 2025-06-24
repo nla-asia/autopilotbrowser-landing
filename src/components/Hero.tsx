@@ -9,14 +9,15 @@ export default function Hero() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Left Column - Content */}          
-          <div className="text-center lg:text-left">                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-[1.1] tracking-wider font-orbitron uppercase">
+          <div className="text-center lg:text-left">                
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-[1.1] tracking-wider font-orbitron uppercase">
               Surf on{' '}
               <span className="bg-gradient-to-r from-[#00D4FF] via-[#9333EA] to-[#FF0080] bg-clip-text text-transparent">
                 Autopilot
               </span>
             </h1>
             <p className="mt-8 text-xl text-gray-300 leading-relaxed max-w-xl font-orbitron">
-              A browser with a smart assistant that surfs the web on your behalf — from research to booking flights, with full privacy.
+            AI-native web browser that surfs the web on your behalf — from your device.
             </p>
                   
             {/* CTA Buttons */}

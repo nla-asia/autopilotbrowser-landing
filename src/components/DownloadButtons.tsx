@@ -142,7 +142,7 @@ export default function DownloadButtons({
             ? 'bg-green-600 hover:bg-green-700' 
             : 'bg-black hover:bg-gray-900'} text-white px-10 py-4 rounded-lg text-lg font-semibold transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1 border border-gray-700/50 font-orbitron`}
         >
-          <span className="flex items-center justify-center">
+          <span className={`flex items-center justify-center ${hasEarlyAccess ? 'text-xs sm:text-sm font-normal' : ''}`}>
             {hasEarlyAccess ? (
               <>
                 ✓ Early Access Registered

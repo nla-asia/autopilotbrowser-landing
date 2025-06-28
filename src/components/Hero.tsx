@@ -59,18 +59,18 @@ export default function Hero() {
                       {/* Sample Interface Elements */}
                       <div className="space-y-4">
                         <div className="bg-gray-800/80 rounded-2xl p-4 shadow-sm border border-gray-700/50">
-                          <div className="text-xs text-gray-400 mb-2 text-left font-orbitron">Current Task</div>
-                          <div className="text-sm text-white text-left font-orbitron">Searching for flights to Tokyo...</div>                          
+                          <div className="text-xs text-gray-400 mb-2 text-left ">Current Task</div>
+                          <div className="text-sm text-white text-left ">Searching for flights to Tokyo...</div>                          
                           <div className="w-full bg-gray-700 rounded-full h-2 mt-3">
                             <div className="bg-[#1D4ED8] h-2 rounded-full w-3/4 animate-pulse"></div>
                           </div>
                         </div>
                         <div className="bg-[#1D4ED8]/20 rounded-2xl p-4 border border-[#1D4ED8]/30">
-                          <div className="text-xs text-[#60A5FA] mb-2 text-left font-semibold font-orbitron">AI Assistant</div>
-                          <div className="text-sm text-white text-left font-orbitron">Found 5 options. Shall I compare prices?</div>
+                          <div className="text-xs text-[#60A5FA] mb-2 text-left font-semibold ">AI Assistant</div>
+                          <div className="text-sm text-white text-left ">Found 5 options. Shall I compare prices?</div>
                           <div className="flex gap-2 mt-3">
-                            <button className="bg-[#1D4ED8] text-white px-3 py-1 rounded-lg text-xs font-orbitron">Yes</button>
-                            <button className="bg-gray-700 text-gray-300 px-3 py-1 rounded-lg text-xs font-orbitron">No</button>
+                            <button className="bg-[#1D4ED8] text-white px-3 py-1 rounded-lg text-xs ">Yes</button>
+                            <button className="bg-gray-700 text-gray-300 px-3 py-1 rounded-lg text-xs ">No</button>
                           </div>
                         </div>
                       </div>

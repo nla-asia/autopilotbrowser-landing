@@ -33,14 +33,14 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-gray-700/50 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-400 text-sm mb-4 md:mb-0 font-orbitron">
+            <p className="text-gray-400 text-sm mb-4 md:mb-0">
               © 2025. All rights reserved.
             </p>            
             <div className="flex items-center space-x-6 text-sm">
-              <Link href="/privacy" className="text-gray-400 hover:text-[#60A5FA] transition-colors duration-200 font-orbitron">
+              <Link href="/privacy" className="text-gray-400 hover:text-[#60A5FA] transition-colors duration-200">
                 Privacy Policy
               </Link>
-              <Link href="/terms" className="text-gray-400 hover:text-[#60A5FA] transition-colors duration-200 font-orbitron">
+              <Link href="/terms" className="text-gray-400 hover:text-[#60A5FA] transition-colors duration-200">
                 Terms of Service
               </Link>
             </div>

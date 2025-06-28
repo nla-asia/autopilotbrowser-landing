@@ -49,7 +49,7 @@ export default function Features() {
     {
       id: 2,
       title: "Page Assistant",
-      description: "Summon instant help for any webpage with a simple shake of your phone. Effortlessly assign tasks like form submissions or data entry — your on-page AI assistant handles it all.",
+      description: "Summon instant help for any webpage with a simple shake of your phone. Effortlessly assign tasks like form submissions or data entry.",
       mockup: (
         <div className="bg-gray-900 rounded-[2.5rem] p-4 shadow-2xl" style={{width: '280px', height: '560px'}}>
           <div className="bg-white rounded-[2rem] overflow-hidden h-full">
@@ -141,7 +141,7 @@ export default function Features() {
     {
       id: 4,
       title: "Minimalist Browser",
-      description: "Clean, distraction-free browsing experience. Focus on what matters without clutter, ads, or unnecessary elements getting in your way.",
+      description: "A simple, clutter-free browser focused on everyday use. No confusing advanced features or overwhelming menus—just pure browsing.",
       mockup: (
         <div className="bg-gray-900 rounded-[2.5rem] p-4 shadow-2xl" style={{width: '280px', height: '560px'}}>
           <div className="bg-white rounded-[2rem] overflow-hidden h-full">

@@ -49,7 +49,7 @@ export default function Features() {
     {
       id: 2,
       title: "Page Assistant",
-      description: "Summon instant help for any webpage with a simple shake of your phone. Effortlessly assign tasks like form submissions or data entry.",
+      description: "Summon instant help with a simple shake of your phone. Effortlessly assign tasks like form submissions or data entry on current web page.",
       mockup: (
         <div className="bg-gray-900 rounded-[2.5rem] p-4 shadow-2xl" style={{width: '280px', height: '560px'}}>
           <div className="bg-white rounded-[2rem] overflow-hidden h-full">

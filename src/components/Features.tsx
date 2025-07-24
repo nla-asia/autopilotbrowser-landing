@@ -140,8 +140,8 @@ export default function Features() {
     },
     {
       id: 4,
-      title: "Minimalist Browser",
-      description: "A simple, clutter-free browser focused on everyday use. No confusing advanced features or overwhelming menus—just pure browsing.",
+      title: "History-less Browser",
+      description: "Privacy isn’t just a mode. It’s the default. Your browsing history, cookies, and trackers are never stored—giving you true peace of mind every time you browse.",
       mockup: (
         <div className="bg-gray-900 rounded-[2.5rem] p-4 shadow-2xl" style={{width: '280px', height: '560px'}}>
           <div className="bg-white rounded-[2rem] overflow-hidden h-full">
@@ -154,32 +154,37 @@ export default function Features() {
                 <div className="w-4 h-1.5 bg-emerald-500 rounded-sm"></div>
               </div>
             </div>
-            {/* Minimalist Browser Interface */}
-            <div className="p-4 h-full bg-white">
-              <div className="bg-gray-100 rounded-full px-4 py-2 mb-4 text-center">
-                <div className="text-xs text-gray-600">autopilotbrowser.com</div>
+            {/* History-less Browser Interface */}
+            <div className="p-4 h-full bg-gradient-to-br from-gray-900 via-gray-800 to-black">
+              <div className="text-center mb-4">
+                <div className="w-12 h-12 bg-emerald-600 rounded-xl mx-auto mb-3 flex items-center justify-center">
+                  {/* Shield icon for privacy */}
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3l7 4v5c0 5.25-3.5 9.75-7 11-3.5-1.25-7-5.75-7-11V7l7-4z" />
+                  </svg>
+                </div>
               </div>
               <div className="space-y-4">
                 <div className="text-center">
-                  <div className="text-lg font-bold text-gray-900 mb-2">Clean Reading</div>
-                  <div className="text-xs text-gray-600 leading-relaxed">
-                    Articles displayed in clean, readable format without distractions.
+                  <div className="text-lg font-bold text-emerald-600 mb-2">No History Saved</div>
+                  <div className="text-xs text-gray-200 leading-relaxed">
+                    Your browsing activity is never recorded. No cookies, no trackers, no worries.
                   </div>
                 </div>
-                <div className="bg-gray-50 rounded-xl p-4">
-                  <div className="w-full h-2 bg-gray-200 rounded mb-2"></div>
-                  <div className="w-3/4 h-2 bg-gray-200 rounded mb-2"></div>
-                  <div className="w-5/6 h-2 bg-gray-200 rounded"></div>
+                <div className="bg-emerald-50 rounded-xl p-4 border border-emerald-200">
+                  <div className="w-full h-2 bg-emerald-200 rounded mb-2"></div>
+                  <div className="w-3/4 h-2 bg-emerald-200 rounded mb-2"></div>
+                  <div className="w-5/6 h-2 bg-emerald-200 rounded"></div>
                 </div>
                 <div className="text-center">
-                  <div className="text-xs text-gray-500">No ads • No pop-ups • Pure content</div>
+                  <div className="text-xs text-emerald-400">No history • No cookies • No trackers</div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       ),
-      emoji: "✨"
+      emoji: "🛡️"
     }
   ];
 

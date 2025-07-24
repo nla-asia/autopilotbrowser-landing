@@ -168,7 +168,7 @@ export default function Features() {
                 <div className="text-center">
                   <div className="text-lg font-bold text-emerald-600 mb-2">No History Saved</div>
                   <div className="text-xs text-gray-200 leading-relaxed">
-                    Your browsing activity is never recorded. No cookies, no trackers, no worries.
+                    Your browsing activity is never recorded. No trackers, no worries.
                   </div>
                 </div>
                 <div className="bg-emerald-50 rounded-xl p-4 border border-emerald-200">

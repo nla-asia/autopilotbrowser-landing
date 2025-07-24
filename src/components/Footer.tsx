@@ -17,7 +17,7 @@ export default function Footer() {
             </h3>
             <p className="text-gray-400 mb-8 max-w-2xl mx-auto leading-relaxed font-orbitron">
               The future is here. 
-              Get ready for AI assistants surf the web on your behalf.
+              Get ready for AI assistants that surf the web on your behalf.
             </p>
             
             {/* Download Buttons */}

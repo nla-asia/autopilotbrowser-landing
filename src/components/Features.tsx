@@ -141,7 +141,7 @@ export default function Features() {
     {
       id: 4,
       title: "History-less Browser",
-      description: "Privacy isn’t just a mode. It’s the default. Your browsing history, cookies, and trackers are never stored—giving you true peace of mind every time you browse.",
+      description: "Privacy isn’t a mode. It’s the only option. Your browsing history, cookies, and trackers are never stored—giving you true peace of mind every time you browse.",
       mockup: (
         <div className="bg-gray-900 rounded-[2.5rem] p-4 shadow-2xl" style={{width: '280px', height: '560px'}}>
           <div className="bg-white rounded-[2rem] overflow-hidden h-full">

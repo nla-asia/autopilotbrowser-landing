@@ -3,23 +3,19 @@ import { validateRequestBody, callBackendAuth, handleAuthResponse } from '@/serv
 
 export async function POST(request: NextRequest) {
   try {
-    interface LoginRequest {
-      email: string;
-      password: string;
-    }
-    const body = await request.json() as LoginRequest;
-    const validation = await validateRequestBody(body, ['email', 'password']);
+    const body = await request.json() as { code: string; redirectUri: string };
+    const validation = await validateRequestBody(body, ['code', 'redirectUri']);
     if (!validation.valid) {
       return Response.json({ error: validation.error }, { status: 400 });
     }
-    const backendResponse = await callBackendAuth('/auth/login', {
-      email: body.email,
-      password: body.password,
+    const backendResponse = await callBackendAuth('/auth/google_login', {
+      code: body.code,
+      redirectUri: body.redirectUri,
       platform: 'web',
     });
     return await handleAuthResponse(backendResponse);
   } catch (error) {
-    console.error('Login API error:', error);
+    console.error('Google auth API error:', error);
     return Response.json({ error: 'Authentication failed' }, { status: 500 });
   }
 }

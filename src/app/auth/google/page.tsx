@@ -1,28 +1,8 @@
-// app/auth/google/page.tsx
-import { config } from '@/config/api';
+﻿// app/auth/google/page.tsx
 import { redirect } from 'next/navigation';
-import AuthSuccess from './AuthSuccess';
+import AuthSuccess from './GoogleAuthSuccess';
 import AuthError from './AuthError';
-
-async function getAuthentication(code: string, redirectUri: string) {
-      try {
-            const res = await fetch(`${config.baseUrl}/auth/google_login`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ code, redirectUri, platform: 'web' }),
-            cache: "no-store"
-            });
-            const data = (await res.json()) as { message?: string; error?: string; token?: string; user?: object };
-            console.log('Authentication result:', data);
-            if (res.ok) {
-            return data;
-            } else {
-            return { error: data.error || 'Failed to get authenticated!'};
-            }
-      } catch {
-        return { error: "Something went wrong. Please try again." };
-      }
-}
+import { config } from '@/config/api';
 
 export default async function GoogleAuthPage({
   searchParams,
@@ -40,19 +20,12 @@ export default async function GoogleAuthPage({
   }
 
   // Build redirect URI
-  const baseUrl = process.env.NEXTAUTH_URL || 'http://localhost:3000';
-  const redirectUri = `${baseUrl}/auth/google`;
+  const redirectUri = `${config.siteUrl}/auth/google`;
 
   // Handle OAuth callback (when Google redirects back with code)
   if (code) {
-    console.log('Received auth code:', code);
-    const authResult = await getAuthentication(code, redirectUri);
-    if(!authResult.token){
-     return <AuthError error={authResult.error || 'Failed to get authenticated!'} />;
-    }
-
-    // Return success component instead of redirecting immediately
-    return <AuthSuccess token={authResult.token} />;
+    // Pass code and redirectUri to AuthSuccess for client-side API call
+    return <AuthSuccess code={code} redirectUri={redirectUri} />;
   }
 
   // Handle OAuth errors

@@ -1,8 +1,10 @@
 'use client';
 
 import React, { useState } from 'react';
+import { useAuth } from '../../../context/AuthContext';
 
 const LoginForm: React.FC = () => {
+  const { login } = useAuth();
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -21,6 +23,8 @@ const LoginForm: React.FC = () => {
   const handleGoogleLogin = () => {
     setIsOAuthLoading(true);
     setError('');
+    // Set localStorage to indicate web initiator
+    localStorage.setItem('oauth_initiator', 'web');
     // Redirect to Google OAuth
     window.location.href = '/auth/google';
   };
@@ -42,7 +46,7 @@ const LoginForm: React.FC = () => {
         }),
       });
 
-      const data = await response.json();
+      const data = await response.json() as { user?: object; token?: string; error?: string };
 
       if (!response.ok) {
         throw new Error(data.error || 'Login failed');
@@ -50,6 +54,10 @@ const LoginForm: React.FC = () => {
 
       // Handle successful login
       console.log('Login successful:', data);
+      // Store user data using auth context
+      if (data.user) {
+        login(data.user);
+      }
       // Redirect to dashboard
       window.location.href = '/dashboard';
     } catch (err) {

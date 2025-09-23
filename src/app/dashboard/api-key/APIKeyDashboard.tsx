@@ -16,7 +16,8 @@ const syncCurl = `curl -X POST "https://api.autopilotbrowser.com/wf/run" \\
     "workflowName": "tvsMagazineScheduleBrowser",
     "workflowInputs": &lbrace;
       "isEnglish": true
-    &rbrace;
+    &rbrace;,
+    "browserId": "optional-browser-id"
   &rbrace;'`;
 
 const asyncCurl = `curl -X POST "https://api.autopilotbrowser.com/wf/run" \\
@@ -27,7 +28,8 @@ const asyncCurl = `curl -X POST "https://api.autopilotbrowser.com/wf/run" \\
     "workflowName": "tvsMagazineScheduleBrowser",
     "workflowInputs": &lbrace;
       "isEnglish": false
-    &rbrace;
+    &rbrace;,
+    "browserId": "optional-browser-id"
   &rbrace;'`;
 
 const listSuccess = `&lbrace;
@@ -172,7 +174,7 @@ export default function APIKeyDashboard() {
           {/* Run Workflow (Sync) */}
           <div className="bg-slate-700/50 rounded-lg p-4">
             <h3 className="text-lg font-medium text-white mb-2">Run Workflow (Sync)</h3>
-            <p className="text-slate-400 text-sm mb-4">Execute a workflow synchronously and wait for completion. The workflowResult object contains the workflow output data.</p>
+            <p className="text-slate-400 text-sm mb-4">Execute a workflow synchronously and wait for completion. The workflowResult object contains the workflow output data. Optionally specify a browserId to use a specific browser instance.</p>
             <div className="text-xs text-slate-300 mb-2"><strong>POST</strong> https://api.autopilotbrowser.com/wf/run</div>
             <div className="space-y-4">
               <div>
@@ -201,7 +203,7 @@ export default function APIKeyDashboard() {
           {/* Run Workflow (Async) */}
           <div className="bg-slate-700/50 rounded-lg p-4">
             <h3 className="text-lg font-medium text-white mb-2">Run Workflow (Async)</h3>
-            <p className="text-slate-400 text-sm mb-4">Execute a workflow asynchronously. Returns immediately with a reference ID for status checking.</p>
+            <p className="text-slate-400 text-sm mb-4">Execute a workflow asynchronously. Returns immediately with a reference ID for status checking. Optionally specify a browserId to use a specific browser instance.</p>
             <div className="text-xs text-slate-300 mb-2"><strong>POST</strong> https://api.autopilotbrowser.com/wf/run</div>
             <div className="space-y-4">
               <div>

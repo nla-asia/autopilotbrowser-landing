@@ -3,9 +3,15 @@ import React, { createContext, useContext, useState, useEffect, ReactNode } from
 
 export interface Browser {
   id: string;
-  name: string;
-  status: string;
-  // Add other fields as needed
+  browser_name: string;
+  device_id: string;
+  platform: string;
+  last_active_at?: string;
+}
+
+interface BrowsersResponse {
+  devices?: Browser[];
+  error?: string;
 }
 
 interface BrowsersContextType {
@@ -28,13 +34,13 @@ export const BrowsersProvider = ({ children }: { children: ReactNode }) => {
     try {
       const res = await fetch("/api/browsers");
       const data = await res.json();
-      if (!res.ok || data.error) {
-        setError(data.error || "Failed to fetch browsers");
+      if (!res.ok || (data as BrowsersResponse).error) {
+        setError((data as BrowsersResponse).error || "Failed to fetch browsers");
         setBrowsers([]);
       } else {
-        setBrowsers(data.devices || []);
+        setBrowsers((data as BrowsersResponse).devices || []);
       }
-    } catch (err) {
+    } catch (_err) { // eslint-disable-line @typescript-eslint/no-unused-vars
       setError("Failed to fetch browsers");
       setBrowsers([]);
     } finally {

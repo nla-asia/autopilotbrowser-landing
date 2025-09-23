@@ -22,7 +22,7 @@ export default async function DashboardLayout({ children }: DashboardLayoutProps
     <div className="min-h-screen bg-slate-950">
       <Sidebar />
       <TopNav />
-      <main className="ml-64 pt-16">
+      <main className="ml-52">
         <div className="p-6">
           {children}
         </div>

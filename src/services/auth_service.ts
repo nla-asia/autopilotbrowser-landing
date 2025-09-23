@@ -46,7 +46,7 @@ export async function setAuthCookie(token: string) {
 export async function handleAuthResponse(backendResponse: Response): Promise<NextResponse> {
   const data: unknown = await backendResponse.json();
   if (!backendResponse.ok) {
-    const errorMsg = typeof data === 'object' && data !== null && 'error' in data ? (data as any).error : 'Authentication failed';
+    const errorMsg = typeof data === 'object' && data !== null && 'error' in data ? (data as { error: string }).error : 'Authentication failed';
     return NextResponse.json(
       { error: errorMsg },
       { status: backendResponse.status }

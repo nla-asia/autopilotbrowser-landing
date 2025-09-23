@@ -93,12 +93,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         body: JSON.stringify({ code, redirectUri }),
       });
       const data = await res.json();
-      if (!res.ok || data.error) {
-        return { success: false, error: data.error || 'Google login failed' };
+      if (!res.ok || (data as { error?: string }).error) {
+        return { success: false, error: (data as { error?: string }).error || 'Google login failed' };
       }
-      setUser(data.user);
+      setUser((data as { user: User }).user);
       return { success: true };
-    } catch (error) {
+    } catch (_error) { // eslint-disable-line @typescript-eslint/no-unused-vars
       return { success: false, error: 'Google login failed' };
     }
   };

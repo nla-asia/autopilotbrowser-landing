@@ -1,5 +1,13 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState } from 'react';
+
+interface Browser {
+  id: string;
+  browser_name: string;
+  device_id: string;
+  platform: string;
+  last_active_at?: string;
+}
 import { useBrowsers } from "../../../context/BrowsersContext";
 
 export default function BrowsersTable() {
@@ -29,7 +37,7 @@ export default function BrowsersTable() {
           </tr>
         </thead>
         <tbody>
-          {browsers.slice(0, visibleCount).map((browser: any) => (
+          {browsers.slice(0, visibleCount).map((browser: Browser) => (
             <tr key={browser.id} className="border-b border-slate-700">
               <td className="px-4 py-2 text-white font-medium">{browser.browser_name}</td>
               <td className="px-4 py-2 text-slate-300">{browser.device_id}</td>

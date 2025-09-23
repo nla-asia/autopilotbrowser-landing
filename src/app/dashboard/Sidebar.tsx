@@ -40,7 +40,7 @@ export function Sidebar() {
                     : 'text-slate-300 hover:bg-slate-800 hover:text-white'
                 }`}
               >
-                <span className="mr-3 text-lg">{item.icon}</span>
+                <span className="mr-2 text-lg">{item.icon}</span>
                 {item.name}
               </Link>
             );
@@ -57,7 +57,7 @@ export function Sidebar() {
                 : 'text-slate-300 hover:bg-slate-800 hover:text-white'
             }`}
           >
-            <span className="mr-3 text-lg">🔑</span>
+            <span className="mr-2 text-lg">🔑</span>
             API Key
           </Link>
         </div>

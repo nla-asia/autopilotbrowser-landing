@@ -31,13 +31,13 @@ export const WorkflowsProvider = ({ children }: { children: ReactNode }) => {
     try {
       const res = await fetch("/api/workflows");
       const data = await res.json();
-      if (!res.ok || data.error) {
-        setError(data.error || "Failed to fetch workflows");
+      if (!res.ok || (data as { error?: string }).error) {
+        setError((data as { error?: string }).error || "Failed to fetch workflows");
         setWorkflows([]);
       } else {
-        setWorkflows(data.workflows || []);
+        setWorkflows((data as { workflows?: Workflow[] }).workflows || []);
       }
-    } catch (err) {
+    } catch (_err) { // eslint-disable-line @typescript-eslint/no-unused-vars
       setError("Failed to fetch workflows");
       setWorkflows([]);
     } finally {

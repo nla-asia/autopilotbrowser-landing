@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import { config } from '@/config/api';
 
-export async function GET(request: NextRequest) {
+export async function GET(_request: NextRequest) { // eslint-disable-line @typescript-eslint/no-unused-vars
   try {
     const cookieStore = await cookies();
     const token = cookieStore.get('auth_token');
@@ -19,10 +19,10 @@ export async function GET(request: NextRequest) {
     });
     const data = await backendResponse.json();
     if (!backendResponse.ok) {
-      return NextResponse.json({ error: (typeof data === 'object' && data !== null && 'error' in data) ? (data as any).error : 'Failed to fetch workflows' }, { status: backendResponse.status });
+      return NextResponse.json({ error: (typeof data === 'object' && data !== null && 'error' in data) ? (data as { error: string }).error : 'Failed to fetch workflows' }, { status: backendResponse.status });
     }
     return NextResponse.json(data);
-  } catch (error) {
+  } catch (_error) { // eslint-disable-line @typescript-eslint/no-unused-vars
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }

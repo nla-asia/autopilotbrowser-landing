@@ -7,7 +7,7 @@ import { config } from '@/config/api';
 export default async function GoogleAuthPage({
   searchParams,
 }: {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
   const params = await searchParams;
   const code = typeof params.code === 'string' ? params.code : null;

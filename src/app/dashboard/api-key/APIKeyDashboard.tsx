@@ -69,10 +69,11 @@ const syncSuccess = `&lbrace;
 &rbrace;`;
 
 const syncFail = `&lbrace;
-  "error": "Workflow execution failed",
-  "referenceId": 200,
-  "details": "Required input 'url' is missing",
-  "status": "failed"
+  "referenceId": 2085,
+  "workflowResult": &lbrace;
+    "error": "Step 3 (assertElement): Assertion failed: Element not found",
+    "success": false
+  &rbrace;
 &rbrace;`;
 
 const syncError = `&lbrace;

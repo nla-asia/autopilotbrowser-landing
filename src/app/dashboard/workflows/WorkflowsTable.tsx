@@ -73,13 +73,13 @@ export default function WorkflowsTable() {
               <td className="px-4 py-2 text-slate-300">{workflow.last_run_at ? new Date(workflow.last_run_at).toLocaleString() : "Never"}</td>
               <td className="px-4 py-2 space-x-2">
                 <button
-                  className="border border-green-600 text-green-600 hover:bg-green-600 hover:text-white px-2 py-1 rounded text-sm cursor-pointer"
+                  className=" text-green-600 hover:bg-green-600 hover:text-white px-2 py-1 rounded text-sm cursor-pointer"
                   onClick={() => openInputsDialog(workflow.inputs)}
                 >
                   Inputs
                 </button>
                 <button
-                  className="border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-2 py-1 rounded text-sm cursor-pointer"
+                  className=" text-blue-600 hover:bg-blue-600 hover:text-white px-2 py-1 rounded text-sm cursor-pointer"
                   onClick={() => openOutputsDialog(workflow.outputs)}
                 >
                   Outputs

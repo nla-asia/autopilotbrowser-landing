@@ -3,6 +3,9 @@ import { Geist, Geist_Mono, Orbitron } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { AuthProvider } from "../context/AuthContext";
+import { BrowsersProvider } from "../context/BrowsersContext";
+import { WorkflowsProvider } from "../context/WorkflowsContext";
+import { APIKeyProvider } from "../context/APIKeyContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -49,7 +52,13 @@ export default function RootLayout({
           `}
         </Script>
         <AuthProvider>
-          {children}
+          <BrowsersProvider>
+            <WorkflowsProvider>
+              <APIKeyProvider>
+                {children}
+              </APIKeyProvider>
+            </WorkflowsProvider>
+          </BrowsersProvider>
         </AuthProvider>
       </body>
     </html>

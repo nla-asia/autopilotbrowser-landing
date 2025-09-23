@@ -1,6 +1,7 @@
 "use client";
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
 const navigation = [
@@ -16,10 +17,10 @@ export function Sidebar() {
     <div className="fixed inset-y-0 left-0 z-50 w-52 bg-slate-900 border-r border-slate-700">
       <div className="flex flex-col h-full">
         {/* Logo */}
-        <div className="flex items-center justify-center h-14 px-3 border-b border-slate-700">
+        <div className="flex items-center justify-center h-16 px-3 border-b border-slate-700">
           <Link href="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">AB</span>
+            <div className="w-8 h-8 rounded-lg flex items-center justify-center">
+              <Image src="/logo.png" width={36} height={36} alt="Autopilot Browser Logo" />
             </div>
             <span className="text-white font-semibold">Autopilot Browser</span>
           </Link>

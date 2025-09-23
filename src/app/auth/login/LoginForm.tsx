@@ -205,11 +205,11 @@ const LoginForm: React.FC = () => {
         </form>
 
         {/* Footer */}
-        <div className="text-center mt-6">
+        {/* <div className="text-center mt-6">
           <span className="text-sm text-slate-300">
             Don&apos;t have an account? Contact support for access.
           </span>
-        </div>
+        </div> */}
       </div>
     </div>
   );

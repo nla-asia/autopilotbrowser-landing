@@ -105,6 +105,9 @@ export default function APIKeyDashboard() {
   const { apiKeys, isLoading, error } = useAPIKeys();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [editKey, setEditKey] = useState<APIKey | null>(null);
+  const [listExpanded, setListExpanded] = useState(true);
+  const [syncExpanded, setSyncExpanded] = useState(false);
+  const [asyncExpanded, setAsyncExpanded] = useState(false);
 
   const handleCreateClick = () => {
     setEditKey(null);
@@ -152,77 +155,107 @@ export default function APIKeyDashboard() {
         <div className="space-y-8">
           {/* List Workflows */}
           <div className="bg-slate-700/50 rounded-lg p-4">
-            <h3 className="text-lg font-medium text-white mb-2">List Workflows</h3>
-            <p className="text-slate-400 text-sm mb-4">Retrieve a list of available workflows, optionally filtered by website.</p>
-            <div className="text-xs text-slate-300 mb-2"><strong>GET</strong> https://api.autopilotbrowser.com/wf/search</div>
-            <div className="space-y-4">
-              <div>
-                <h4 className="text-white text-sm font-medium mb-2">Example CURL Request</h4>
-                <pre className="bg-slate-900 p-3 rounded text-green-400 text-xs overflow-x-auto" dangerouslySetInnerHTML={{__html: `<code>${listWorkflowsCurl}</code>`}} />
-              </div>
-              <div>
-                <h4 className="text-white text-sm font-medium mb-2">Example Success Response (200)</h4>
-                <pre className="bg-slate-900 p-3 rounded text-blue-400 text-xs overflow-x-auto" dangerouslySetInnerHTML={{__html: `<code>${listSuccess}</code>`}} />
-              </div>
-              <div>
-                <h4 className="text-white text-sm font-medium mb-2">Example Error Response (401)</h4>
-                <pre className="bg-slate-900 p-3 rounded text-red-400 text-xs overflow-x-auto" dangerouslySetInnerHTML={{__html: `<code>${listError}</code>`}} />
-              </div>
-            </div>
+            <button
+              onClick={() => setListExpanded(!listExpanded)}
+              className="flex items-center justify-between w-full text-left"
+            >
+              <h3 className="text-lg font-medium text-white">List Workflows</h3>
+              <span className="text-white text-lg">{listExpanded ? '▼' : '▶'}</span>
+            </button>
+            {listExpanded && (
+              <>
+                <p className="text-slate-400 text-sm mb-4">Retrieve a list of available workflows, optionally filtered by website.</p>
+                <div className="text-xs text-slate-300 mb-2"><strong>GET</strong> https://api.autopilotbrowser.com/wf/search</div>
+                <div className="space-y-4">
+                  <div>
+                    <h4 className="text-white text-sm font-medium mb-2">Example CURL Request</h4>
+                    <pre className="bg-slate-900 p-3 rounded text-green-400 text-xs overflow-x-auto" dangerouslySetInnerHTML={{__html: `<code>${listWorkflowsCurl}</code>`}} />
+                  </div>
+                  <div>
+                    <h4 className="text-white text-sm font-medium mb-2">Example Success Response (200)</h4>
+                    <pre className="bg-slate-900 p-3 rounded text-blue-400 text-xs overflow-x-auto" dangerouslySetInnerHTML={{__html: `<code>${listSuccess}</code>`}} />
+                  </div>
+                  <div>
+                    <h4 className="text-white text-sm font-medium mb-2">Example Error Response (401)</h4>
+                    <pre className="bg-slate-900 p-3 rounded text-red-400 text-xs overflow-x-auto" dangerouslySetInnerHTML={{__html: `<code>${listError}</code>`}} />
+                  </div>
+                </div>
+              </>
+            )}
           </div>
 
           {/* Run Workflow (Sync) */}
           <div className="bg-slate-700/50 rounded-lg p-4">
-            <h3 className="text-lg font-medium text-white mb-2">Run Workflow (Sync)</h3>
-            <p className="text-slate-400 text-sm mb-4">Execute a workflow synchronously and wait for completion. The workflowResult object contains the workflow output data. Optionally specify a browserId to use a specific browser instance.</p>
-            <div className="text-xs text-slate-300 mb-2"><strong>POST</strong> https://api.autopilotbrowser.com/wf/run</div>
-            <div className="space-y-4">
-              <div>
-                <h4 className="text-white text-sm font-medium mb-2">Example CURL Request</h4>
-                <pre className="bg-slate-900 p-3 rounded text-green-400 text-xs overflow-x-auto" dangerouslySetInnerHTML={{__html: `<code>${syncCurl}</code>`}} />
-              </div>
-              <div>
-                <h4 className="text-white text-sm font-medium mb-2">Example Success Response (200)</h4>
-                <pre className="bg-slate-900 p-3 rounded text-blue-400 text-xs overflow-x-auto" dangerouslySetInnerHTML={{__html: `<code>${syncSuccess}</code>`}} />
-              </div>
-              <div>
-                <h4 className="text-white text-sm font-medium mb-2">Example Workflow Run Fail Response (422)</h4>
-                <pre className="bg-slate-900 p-3 rounded text-yellow-400 text-xs overflow-x-auto" dangerouslySetInnerHTML={{__html: `<code>${syncFail}</code>`}} />
-              </div>
-              <div>
-                <h4 className="text-white text-sm font-medium mb-2">Example Error Response (400)</h4>
-                <pre className="bg-slate-900 p-3 rounded text-red-400 text-xs overflow-x-auto" dangerouslySetInnerHTML={{__html: `<code>${syncError}</code>`}} />
-              </div>
-              <div>
-                <h4 className="text-white text-sm font-medium mb-2">Example Error Response (400) - Browser Offline</h4>
-                <pre className="bg-slate-900 p-3 rounded text-red-400 text-xs overflow-x-auto" dangerouslySetInnerHTML={{__html: `<code>${browserOfflineError}</code>`}} />
-              </div>
-            </div>
+            <button
+              onClick={() => setSyncExpanded(!syncExpanded)}
+              className="flex items-center justify-between w-full text-left"
+            >
+              <h3 className="text-lg font-medium text-white">Run Workflow (Sync)</h3>
+              <span className="text-white text-lg">{syncExpanded ? '▼' : '▶'}</span>
+            </button>
+            {syncExpanded && (
+              <>
+                <p className="text-slate-400 text-sm mb-4">Execute a workflow synchronously and wait for completion. The workflowResult object contains the workflow output data. Optionally specify a browserId to use a specific browser instance.</p>
+                <div className="text-xs text-slate-300 mb-2"><strong>POST</strong> https://api.autopilotbrowser.com/wf/run</div>
+                <div className="space-y-4">
+                  <div>
+                    <h4 className="text-white text-sm font-medium mb-2">Example CURL Request</h4>
+                    <pre className="bg-slate-900 p-3 rounded text-green-400 text-xs overflow-x-auto" dangerouslySetInnerHTML={{__html: `<code>${syncCurl}</code>`}} />
+                  </div>
+                  <div>
+                    <h4 className="text-white text-sm font-medium mb-2">Example Success Response (200)</h4>
+                    <pre className="bg-slate-900 p-3 rounded text-blue-400 text-xs overflow-x-auto" dangerouslySetInnerHTML={{__html: `<code>${syncSuccess}</code>`}} />
+                  </div>
+                  <div>
+                    <h4 className="text-white text-sm font-medium mb-2">Example Workflow Run Fail Response (422)</h4>
+                    <pre className="bg-slate-900 p-3 rounded text-yellow-400 text-xs overflow-x-auto" dangerouslySetInnerHTML={{__html: `<code>${syncFail}</code>`}} />
+                  </div>
+                  <div>
+                    <h4 className="text-white text-sm font-medium mb-2">Example Error Response (400)</h4>
+                    <pre className="bg-slate-900 p-3 rounded text-red-400 text-xs overflow-x-auto" dangerouslySetInnerHTML={{__html: `<code>${syncError}</code>`}} />
+                  </div>
+                  <div>
+                    <h4 className="text-white text-sm font-medium mb-2">Example Error Response (400) - Browser Offline</h4>
+                    <pre className="bg-slate-900 p-3 rounded text-red-400 text-xs overflow-x-auto" dangerouslySetInnerHTML={{__html: `<code>${browserOfflineError}</code>`}} />
+                  </div>
+                </div>
+              </>
+            )}
           </div>
 
           {/* Run Workflow (Async) */}
           <div className="bg-slate-700/50 rounded-lg p-4">
-            <h3 className="text-lg font-medium text-white mb-2">Run Workflow (Async)</h3>
-            <p className="text-slate-400 text-sm mb-4">Execute a workflow asynchronously. Returns immediately with a reference ID for status checking. Optionally specify a browserId to use a specific browser instance.</p>
-            <div className="text-xs text-slate-300 mb-2"><strong>POST</strong> https://api.autopilotbrowser.com/wf/run</div>
-            <div className="space-y-4">
-              <div>
-                <h4 className="text-white text-sm font-medium mb-2">Example CURL Request</h4>
-                <pre className="bg-slate-900 p-3 rounded text-green-400 text-xs overflow-x-auto" dangerouslySetInnerHTML={{__html: `<code>${asyncCurl}</code>`}} />
-              </div>
-              <div>
-                <h4 className="text-white text-sm font-medium mb-2">Example Success Response (202)</h4>
-                <pre className="bg-slate-900 p-3 rounded text-blue-400 text-xs overflow-x-auto" dangerouslySetInnerHTML={{__html: `<code>${asyncSuccess}</code>`}} />
-              </div>
-              <div>
-                <h4 className="text-white text-sm font-medium mb-2">Example Workflow Run Fail Response (422)</h4>
-                <pre className="bg-slate-900 p-3 rounded text-yellow-400 text-xs overflow-x-auto" dangerouslySetInnerHTML={{__html: `<code>${asyncFail}</code>`}} />
-              </div>
-              <div>
-                <h4 className="text-white text-sm font-medium mb-2">Example Error Response (429)</h4>
-                <pre className="bg-slate-900 p-3 rounded text-red-400 text-xs overflow-x-auto" dangerouslySetInnerHTML={{__html: `<code>${asyncError}</code>`}} />
-              </div>
-            </div>
+            <button
+              onClick={() => setAsyncExpanded(!asyncExpanded)}
+              className="flex items-center justify-between w-full text-left"
+            >
+              <h3 className="text-lg font-medium text-white">Run Workflow (Async)</h3>
+              <span className="text-white text-lg">{asyncExpanded ? '▼' : '▶'}</span>
+            </button>
+            {asyncExpanded && (
+              <>
+                <p className="text-slate-400 text-sm mb-4">Execute a workflow asynchronously. Returns immediately with a reference ID for status checking. Optionally specify a browserId to use a specific browser instance.</p>
+                <div className="text-xs text-slate-300 mb-2"><strong>POST</strong> https://api.autopilotbrowser.com/wf/run</div>
+                <div className="space-y-4">
+                  <div>
+                    <h4 className="text-white text-sm font-medium mb-2">Example CURL Request</h4>
+                    <pre className="bg-slate-900 p-3 rounded text-green-400 text-xs overflow-x-auto" dangerouslySetInnerHTML={{__html: `<code>${asyncCurl}</code>`}} />
+                  </div>
+                  <div>
+                    <h4 className="text-white text-sm font-medium mb-2">Example Success Response (202)</h4>
+                    <pre className="bg-slate-900 p-3 rounded text-blue-400 text-xs overflow-x-auto" dangerouslySetInnerHTML={{__html: `<code>${asyncSuccess}</code>`}} />
+                  </div>
+                  <div>
+                    <h4 className="text-white text-sm font-medium mb-2">Example Workflow Run Fail Response (422)</h4>
+                    <pre className="bg-slate-900 p-3 rounded text-yellow-400 text-xs overflow-x-auto" dangerouslySetInnerHTML={{__html: `<code>${asyncFail}</code>`}} />
+                  </div>
+                  <div>
+                    <h4 className="text-white text-sm font-medium mb-2">Example Error Response (429)</h4>
+                    <pre className="bg-slate-900 p-3 rounded text-red-400 text-xs overflow-x-auto" dangerouslySetInnerHTML={{__html: `<code>${asyncError}</code>`}} />
+                  </div>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </div>

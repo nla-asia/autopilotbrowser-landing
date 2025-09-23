@@ -1,11 +1,13 @@
 "use client";
 import React, { useState } from "react";
 import { useWorkflows } from "@/context/WorkflowsContext";
+import { useRouter } from "next/navigation";
 
 const PAGE_SIZE = 10;
 
 export default function WorkflowsTable() {
   const { workflows, isLoading, error } = useWorkflows();
+  const router = useRouter();
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [dialogContent, setDialogContent] = useState("");
@@ -71,16 +73,22 @@ export default function WorkflowsTable() {
               <td className="px-4 py-2 text-slate-300">{workflow.last_run_at ? new Date(workflow.last_run_at).toLocaleString() : "Never"}</td>
               <td className="px-4 py-2 space-x-2">
                 <button
-                  className="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded text-sm"
+                  className="border border-green-600 text-green-600 hover:bg-green-600 hover:text-white px-2 py-1 rounded text-sm cursor-pointer"
                   onClick={() => openInputsDialog(workflow.inputs)}
                 >
                   Inputs
                 </button>
                 <button
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm"
+                  className="border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-2 py-1 rounded text-sm cursor-pointer"
                   onClick={() => openOutputsDialog(workflow.outputs)}
                 >
                   Outputs
+                </button>
+                <button
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-2 py-1 rounded text-sm cursor-pointer"
+                  onClick={() => router.push(`/dashboard/workflows/${workflow.id}/run`)}
+                >
+                  Run
                 </button>
               </td>
             </tr>

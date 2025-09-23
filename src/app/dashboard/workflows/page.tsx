@@ -7,7 +7,7 @@ export default function WorkflowsPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-white">Workflows</h1>
-          <p className="text-slate-400">Manage automated browsing workflows</p>
+          <p className="text-slate-400">Workflows are re-usable, eco-friendly web automation solutions backed by intelligent AI agents.</p>
         </div>
       </div>
 

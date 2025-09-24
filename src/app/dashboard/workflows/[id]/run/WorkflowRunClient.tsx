@@ -24,6 +24,21 @@ export default function WorkflowRunClient({ workflow }: Props) {
   const [isRunning, setIsRunning] = useState(false);
   const [result, setResult] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [jsonDialogOpen, setJsonDialogOpen] = useState(false);
+  const [jsonDialogContent, setJsonDialogContent] = useState('');
+
+  const openJsonDialog = () => {
+    let content = workflow.workflow_file_content;
+    if (typeof content === 'string') {
+      try {
+        content = JSON.parse(content);
+      } catch {
+        // If parsing fails, use as is
+      }
+    }
+    setJsonDialogContent(content ? JSON.stringify(content, null, 2) : "{}");
+    setJsonDialogOpen(true);
+  };
 
   const handleRun = async () => {
     setIsRunning(true);
@@ -112,6 +127,12 @@ export default function WorkflowRunClient({ workflow }: Props) {
       >
         {isRunning ? 'Running...' : 'Run Workflow'}
       </button>
+      <button
+        onClick={openJsonDialog}
+        className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded ml-4 cursor-pointer"
+      >
+        View JSON
+      </button>
       {isRunning && (
         <div className="mt-4 text-blue-400 flex items-center">
           <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-blue-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -137,6 +158,24 @@ export default function WorkflowRunClient({ workflow }: Props) {
             </svg>
           </button>
           <pre className="text-white whitespace-pre-wrap max-h-96 overflow-y-auto">{result}</pre>
+        </div>
+      )}
+      {jsonDialogOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-slate-800 p-6 rounded-lg max-w-2xl w-full">
+            <h2 className="text-xl font-bold text-white mb-4">Workflow JSON</h2>
+            <div className="bg-slate-900 p-4 rounded max-h-60 overflow-auto">
+              <pre className="text-white whitespace-pre-wrap text-sm">{jsonDialogContent}</pre>
+            </div>
+            <div className="flex justify-end mt-4">
+              <button
+                className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded"
+                onClick={() => setJsonDialogOpen(false)}
+              >
+                Close
+              </button>
+            </div>
+          </div>
         </div>
       )}
     </div>

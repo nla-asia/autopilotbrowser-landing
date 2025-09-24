@@ -10,6 +10,7 @@ export interface Workflow {
   inputs?: Record<string, unknown>;
   outputs?: Record<string, unknown>;
   created_at: string;
+  workflow_file_content?: string;
 }
 
 interface WorkflowsContextType {

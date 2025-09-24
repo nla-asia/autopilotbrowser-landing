@@ -21,6 +21,7 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
       return <div>Failed to load workflow</div>;
     }
     const workflow: Workflow = await res.json();
+
     return <WorkflowRunClient workflow={workflow} />;
   } catch {
     return <div>Error loading workflow</div>;

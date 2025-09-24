@@ -1,15 +1,7 @@
 import { cookies } from 'next/headers';
 import { config } from '@/config/api';
 import WorkflowRunClient from './WorkflowRunClient';
-
-interface Workflow {
-  id: number;
-  name: string;
-  website: string;
-  last_run_at: string | null;
-  inputs?: Record<string, unknown>;
-  outputs?: Record<string, unknown>;
-}
+import { Workflow } from '@/context/WorkflowsContext';
 
 export default async function Page({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;

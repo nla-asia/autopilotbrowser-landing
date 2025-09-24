@@ -5,7 +5,7 @@ export interface Workflow {
   id: number;
   name: string;
   website: string;
-  description: string;
+  description?: string | null;
   last_run_at: string | null;
   inputs?: Record<string, unknown>;
   outputs?: Record<string, unknown>;

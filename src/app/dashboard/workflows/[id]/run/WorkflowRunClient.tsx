@@ -17,7 +17,7 @@ export default function WorkflowRunClient({ workflow }: Props) {
 
   useEffect(() => {
     if (browsers.length > 0 && !selectedBrowser) {
-      setSelectedBrowser(browsers[0].browser_name);
+      setSelectedBrowser(browsers[0].device_id);
     }
   }, [browsers, selectedBrowser]);
   const [inputs, setInputs] = useState('{}');
@@ -46,6 +46,7 @@ export default function WorkflowRunClient({ workflow }: Props) {
         body: JSON.stringify({
           workflowName: workflow.name,
           workflowInputs: parsedInputs,
+          browserId: selectedBrowser,
         }),
       });
       const data = await res.json() as { error?: string };

@@ -10,7 +10,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
    // const { id } = params;
-    const body = await request.json() as { workflowName: string; workflowInputs: unknown };
+    const body = await request.json() as { workflowName: string; workflowInputs: unknown, browserId: string };
     const apiKey = request.headers.get('x-api-key');
     // Proxy to backend /wf/run
     const headers: Record<string, string> = {
@@ -26,6 +26,7 @@ export async function POST(request: NextRequest) {
       body: JSON.stringify({
         workflowName: body.workflowName,
         workflowInputs: body.workflowInputs,
+        browserId: body.browserId,
       }),
     });
     const data = await backendResponse.json();

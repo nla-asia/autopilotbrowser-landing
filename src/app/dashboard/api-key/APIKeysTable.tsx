@@ -36,7 +36,6 @@ export default function APIKeysTable({ onEdit }: APIKeysTableProps) {
       <table className="w-full text-sm text-left text-slate-300">
         <thead className="text-xs text-slate-400 uppercase bg-slate-700/50">
           <tr>
-            <th scope="col" className="px-6 py-3">ID</th>
             <th scope="col" className="px-6 py-3">API Key</th>
             <th scope="col" className="px-6 py-3">Webhook URL</th>
             <th scope="col" className="px-6 py-3">Status</th>
@@ -46,7 +45,6 @@ export default function APIKeysTable({ onEdit }: APIKeysTableProps) {
         <tbody>
           {apiKeys.map((key) => (
             <tr key={key.id} className="border-b border-slate-700 bg-slate-800/50">
-              <td className="px-6 py-4 font-medium text-white">{key.id}</td>
               <td className="px-6 py-4">
                 <div className="flex items-center space-x-2">
                   <span className="font-mono text-slate-300">

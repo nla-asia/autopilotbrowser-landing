@@ -1,24 +1,10 @@
 "use client";
 import React, { useState, useEffect } from 'react';
-import { useBrowsers } from '@/context/BrowsersContext';
+import { useBrowsers, Browser } from '@/context/BrowsersContext';
 import { useAPIKeys } from '@/context/APIKeyContext';
+import { Workflow } from '@/context/WorkflowsContext';
 
-interface Browser {
-  id: string;
-  browser_name: string;
-  device_id: string;
-  platform: string;
-  last_active_at?: string;
-}
 
-interface Workflow {
-  id: number;
-  name: string;
-  website: string;
-  last_run_at: string | null;
-  inputs?: Record<string, unknown>;
-  outputs?: Record<string, unknown>;
-}
 
 interface Props {
   workflow: Workflow;
@@ -77,13 +63,14 @@ export default function WorkflowRunClient({ workflow }: Props) {
 
   return (
     <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">Run Workflow: {workflow.name}</h1>
+      <h1 className="text-2xl font-bold mb-4">{workflow.name}</h1>
+      <p className='mb-4'>{workflow.description}</p>
       <div className="mb-4 max-w-sm">
-        <label className="block text-sm font-medium mb-2">Browser</label>
+        <label className="block text-sm font-medium mb-2">Choose Browser</label>
         <select
           value={selectedBrowser}
           onChange={(e) => setSelectedBrowser(e.target.value)}
-          className="w-full p-2 bg-slate-800 text-white rounded"
+          className="w-full p-2 pr-4 bg-slate-800 text-white rounded"
         >
           {browsers.map((browser: Browser) => (
             <option key={browser.id} value={browser.device_id}>{browser.browser_name}</option>
@@ -108,11 +95,11 @@ export default function WorkflowRunClient({ workflow }: Props) {
               })()
             }</pre>
           </div>
-          <label className="block text-sm font-medium my-2">Your Inputs (JSON)</label>
+          <label className="block text-sm font-medium my-2">Your Inputs (key: value)</label>
           <textarea
             value={inputs}
             onChange={(e) => setInputs(e.target.value)}
-            className="w-full p-2 bg-slate-800 text-white rounded h-32"
+            className="w-full p-2 bg-slate-800 text-white rounded h-16"
             placeholder="Enter inputs as JSON"
           />
         </div>

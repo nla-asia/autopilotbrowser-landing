@@ -5,10 +5,11 @@ export interface Workflow {
   id: number;
   name: string;
   website: string;
+  description: string;
   last_run_at: string | null;
   inputs?: Record<string, unknown>;
   outputs?: Record<string, unknown>;
-  // Add other fields as needed
+  created_at: string;
 }
 
 interface WorkflowsContextType {

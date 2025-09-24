@@ -59,9 +59,8 @@ export default function WorkflowsTable() {
       <table className="min-w-full bg-slate-800 rounded-lg">
         <thead>
           <tr>
-            <th className="px-4 py-2 text-left text-slate-300">Workflow Name</th>
+            <th className="px-4 py-2 text-left text-slate-300">Name</th>
             <th className="px-4 py-2 text-left text-slate-300">Website</th>
-            <th className="px-4 py-2 text-left text-slate-300">Last Run</th>
             <th className="px-4 py-2 text-left text-slate-300">Actions</th>
           </tr>
         </thead>
@@ -70,7 +69,6 @@ export default function WorkflowsTable() {
             <tr key={workflow.id} className="border-b border-slate-700">
               <td className="px-4 py-2 text-white font-medium">{workflow.name}</td>
               <td className="px-4 py-2 text-slate-300">{workflow.website}</td>
-              <td className="px-4 py-2 text-slate-300">{workflow.last_run_at ? new Date(workflow.last_run_at).toLocaleString() : "Never"}</td>
               <td className="px-4 py-2 space-x-2">
                 <button
                   className=" text-green-600 hover:bg-green-600 hover:text-white px-2 py-1 rounded text-sm cursor-pointer"

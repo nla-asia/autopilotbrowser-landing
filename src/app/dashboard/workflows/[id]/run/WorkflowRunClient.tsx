@@ -15,17 +15,33 @@ export default function WorkflowRunClient({ workflow }: Props) {
   const { apiKeys } = useAPIKeys();
   const [selectedBrowser, setSelectedBrowser] = useState<string>('');
 
-  useEffect(() => {
-    if (browsers.length > 0 && !selectedBrowser) {
-      setSelectedBrowser(browsers[0].device_id);
-    }
-  }, [browsers, selectedBrowser]);
   const [inputs, setInputs] = useState('{}');
+
   const [isRunning, setIsRunning] = useState(false);
   const [result, setResult] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [jsonDialogOpen, setJsonDialogOpen] = useState(false);
   const [jsonDialogContent, setJsonDialogContent] = useState('');
+
+  useEffect(() => {
+    if (browsers.length > 0 && !selectedBrowser) {
+      setSelectedBrowser(browsers[0].device_id);
+    }
+  }, [browsers, selectedBrowser]);
+
+  // Load inputs from localStorage on mount
+  useEffect(() => {
+    const storedInputs = localStorage.getItem(`workflow_inputs_${workflow.id}`);
+    if (storedInputs) {
+      setInputs(storedInputs);
+    }
+  }, [workflow.id]);
+
+  // Save inputs to localStorage whenever inputs change
+  useEffect(() => {
+    if (inputs=="{}") return;
+    localStorage.setItem(`workflow_inputs_${workflow.id}`, inputs);
+  }, [inputs, workflow.id]);
 
   const openJsonDialog = () => {
     let content = workflow.workflow_file_content;
